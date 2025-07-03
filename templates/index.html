@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Groove.AI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+  <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+    <h2 class="text-2xl font-bold text-center mb-6">🎶 Groove.AI – Playlist Generator</h2>
+
+    <form method="POST" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium">Enter 2-3 favorite songs:</label>
+        <input name="songs" type="text" placeholder="e.g. Believer, Peaches"
+          class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Choose a mood:</label>
+        <select name="mood" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2">
+          <option value="chill">Chill</option>
+          <option value="happy">Happy</option>
+          <option value="sad">Sad</option>
+          <option value="party">Party</option>
+        </select>
+      </div>
+
+      <button type="submit"
+        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg">
+        Generate Playlist
+      </button>
+    </form>
+
+    {% if recommendations %}
+    <div class="mt-6">
+      <h3 class="text-lg font-semibold">🎧 Your Playlist:</h3>
+      <ul class="list-disc list-inside mt-2 text-gray-700">
+        {% for song in recommendations %}
+          <li>{% autoescape false %}{{ song }}{% endautoescape %}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
